@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guitar Cable Cost Calculator</title>
+</head>
+<body>
+    <h2>Guitar Cable Cost Calculator</h2>
+    Length (in feet): <input type="number" id="length"><br>
+    End 1: <select id="end1">
+        <option value="straight">Straight</option>
+        <option value="right angle">Right Angle</option>
+    </select><br>
+    End 2: <select id="end2">
+        <option value="straight">Straight</option>
+        <option value="right angle">Right Angle</option>
+    </select><br>
+    <button onclick="calculateCost()">Calculate</button>
+    <h3>Total Cost: $<span id="totalCost">0.00</span></h3>
+
+    <script>
+        function calculateCost() {
+            const length = document.getElementById('length').value;
+            const end1 = document.getElementById('end1').value;
+            const end2 = document.getElementById('end2').value;
+            const costPerFoot = 1.20;
+            const costStraight = 4;
+            const costRightAngle = 6;
+
+            let endsCost = 0;
+            if (end1 === "straight") endsCost += costStraight;
+            else if (end1 === "right angle") endsCost += costRightAngle;
+            if (end2 === "straight") endsCost += costStraight;
+            else if (end2 === "right angle") endsCost += costRightAngle;
+
+            const totalCost = (length * costPerFoot) + endsCost;
+            document.getElementById('totalCost').innerText = totalCost.toFixed(2);
+        }
+    </script>
+</body>
+</html>
